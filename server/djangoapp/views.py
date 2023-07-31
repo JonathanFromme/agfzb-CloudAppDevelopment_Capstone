@@ -30,15 +30,16 @@ def contact(request):
         return render(request, 'djangoapp/contact.html', context)
 
 # Update the `get_dealerships` view to render the index page with a list of dealerships
+
 def get_dealerships(request):
     if request.method == "GET":
+        context = {}
         url = "https://us-south.functions.appdomain.cloud/api/v1/web/01aa7729-df5d-4ea4-a6ec-d070a02ebf9c/dealership-package/get-dealership"
         # Get dealers from the URL
         dealerships = get_dealers_from_cf(url)
-        # Concat all dealer's short name
-        dealer_names = ' '.join([dealer.short_name for dealer in dealerships])
+        context['dealership_list'] = dealerships
         # Return a list of dealer short name
-        return HttpResponse(dealer_names)
+        return render(request, 'djangoapp/index.html', context)
 
 # Create a `login_request` view to handle sign in request
 def login_request(request):

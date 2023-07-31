@@ -97,9 +97,8 @@ def get_dealer_by_id_from_cf(url, id):
         
         dealer_doc = dealers[0] 
         dealer_obj = CarDealer(address=dealer_doc["address"], city=dealer_doc["city"],full_name=dealer_doc["full_name"],
-                                id=dealer_doc["id"], lat=dealer_doc["lat"], long=dealer_doc["long"],
-                                
-                                st=dealer_doc["st"], zip=dealer_doc["zip"])
+                                id=dealer_doc["id"], lat=dealer_doc["lat"], long=dealer_doc["long"],   
+                                st=dealer_doc["st"], zip=dealer_doc["zip"], short_name=dealer_doc["short_name"])
     return dealer_obj
 
 def get_dealer_reviews_from_cf(url, **kwargs):
