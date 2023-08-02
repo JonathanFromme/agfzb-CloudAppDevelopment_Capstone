@@ -1,3 +1,4 @@
+from operator import truediv
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
@@ -30,7 +31,6 @@ def contact(request):
         return render(request, 'djangoapp/contact.html', context)
 
 # Update the `get_dealerships` view to render the index page with a list of dealerships
-
 def get_dealerships(request):
     if request.method == "GET":
         context = {}
@@ -59,9 +59,9 @@ def login_request(request):
         else:
             # If not, return to login page again
             messages.warning(request, "Invalid username or password.")
-            return render(request, 'djangoapp/index.html', context)
+            return render(request, 'djangoapp/registration.html', context)
     else:
-        return render(request, 'djangoapp/index.html', context)
+        return render(request, 'djangoapp/registration.html', context)
 
 # Create a `logout_request` view to handle sign out request
 def logout_request(request):
@@ -129,7 +129,6 @@ def add_review(request, id):
     if request.method == 'GET':
         # Get cars for the dealer
         cars = CarModel.objects.all()
-        print(cars)
         context["cars"] = cars
         
         return render(request, 'djangoapp/add_review.html', context)
@@ -156,6 +155,6 @@ def add_review(request, id):
 
             new_payload = {}
             new_payload["review"] = payload
-            review_post_url = "https://us-south.functions.appdomain.cloud/api/v1/web/01aa7729-df5d-4ea4-a6ec-d070a02ebf9c/dealership-package/get-post"
+            review_post_url = "https://us-south.functions.appdomain.cloud/api/v1/web/01aa7729-df5d-4ea4-a6ec-d070a02ebf9c/dealership-package/post-review"
             post_request(review_post_url, new_payload, id=id)
         return redirect("djangoapp:dealer_details", id=id)

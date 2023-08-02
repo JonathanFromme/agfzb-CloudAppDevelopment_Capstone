@@ -8,9 +8,9 @@ from ibm_watson.natural_language_understanding_v1 import Features,SentimentOptio
 import time
 
 def analyze_review_sentiments(text):
-    api_key = "MTVRcF_7PoVcfl4yJAPvGHD5_aDnLPXKITODqOFdaDK-"
-    url = "https://api.us-east.natural-language-understanding.watson.cloud.ibm.com/instances/01aa7729-df5d-4ea4-a6ec-d070a02ebf9c"
-    texttoanalyze= text
+    api_key = "tF2ysYxeL25n5vszAJmjD9vHRL1FN0X0TCkBhfLvP1Mm"
+    url = "https://api.us-east.natural-language-understanding.watson.cloud.ibm.com/instances/ce0843e0-95fa-4ab3-ad9a-25e28abfc190"
+
     version = '2020-08-01'
     authenticator = IAMAuthenticator(api_key)
     natural_language_understanding = NaturalLanguageUnderstandingV1(
@@ -83,7 +83,6 @@ def get_dealers_from_cf(url, **kwargs):
             # Create a CarDealer object with values in `doc` object
             dealer_obj = CarDealer(address=dealer_doc["address"], city=dealer_doc["city"],
                                    id=dealer_doc["id"], lat=dealer_doc["lat"], long=dealer_doc["long"], full_name=dealer_doc["full_name"],
-
                                    short_name=dealer_doc["short_name"], st=dealer_doc["st"], zip=dealer_doc["zip"])
             results.append(dealer_obj)
 
